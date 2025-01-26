@@ -52,6 +52,13 @@ void PollEvents(sf::RenderWindow &window) {
 		}
 	}
 }
+void LoadFont(sf::Font &font, std::string str) {
+
+	if(!font.openFromFile(str)) {
+
+		std::cerr << "ERROR::COULD NOT LOAD FILE::" << str << "!!!" << std::endl;
+	}
+}
 int main() {
 
 	unsigned int width = 640;
