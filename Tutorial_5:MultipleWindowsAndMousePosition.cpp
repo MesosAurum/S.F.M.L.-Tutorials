@@ -96,7 +96,9 @@ int main() {
 
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::O)) {
 
-				window2 = new sf::RenderWindow(sf::VideoMode({ width,height }), "Tutorials2");
+				//This is different from the video as what we did in the video would create a memory leak!
+				//Thank you to the helpful commenter on the video page!
+				window2->create(sf::VideoMode({ width, height });
 			}
 		}
 
