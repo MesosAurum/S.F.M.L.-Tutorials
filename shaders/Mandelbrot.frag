@@ -16,7 +16,7 @@ vec3 hueSatLight(float h, float s, float l){
 vec3 palette(float i){
 	
 	vec3 hSL;
-	float it = (i / maxIteration);
+	float it = i / maxIteration;
 	hSL.x = mod(pow(360.0 * it, 1.5), 360.0);
 	hSL.y = 1.0;
 	hSL.z = it;
@@ -46,7 +46,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
 		float invLog2 = 1.0 / log2(2.0);
 		float nu = log2(logZn * invLog2) * invLog2;
 
-		iteration = iteration + 1.0 - nu;
+		iteration += 1.0 - nu;
 	}
 	vec3 color0 = palette(floor(iteration));
 	vec3 color1 = palette(floor(iteration) + 1.0);
