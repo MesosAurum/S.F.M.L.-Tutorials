@@ -25,6 +25,9 @@ void pollEvents(sf::RenderWindow &window) {
 }
 int main() {
 
+	sf::Clock clock;
+	sf::Time time = clock.restart();
+
 	unsigned int w = 640;
 	unsigned int h = 360;
 	sf::Vector2u windowSize = { w, h };
@@ -52,6 +55,8 @@ int main() {
 
 	while(window.isOpen()) {
 
+		time = clock.getElapsedTime();
+
 		//Update
 		pollEvents(window);
 
@@ -60,6 +65,7 @@ int main() {
 		mousePos = mousePos.componentWiseDiv({ wFloat, hFloat });
 
 		shader.setUniform("iResolution", sf::Vector2f(wFloat, hFloat));
+		shader.setUniform("iTime", time.asSeconds());
 
 		//Render section
 		//Clearing the screen.
