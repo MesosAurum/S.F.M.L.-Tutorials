@@ -29,7 +29,7 @@ int main() {
 	unsigned int h = 360;
 	sf::Vector2u windowSize = { w, h };
 	sf::VideoMode videoMode = sf::VideoMode(windowSize);
-	sf::RenderWindow window{ videoMode,"SFML Testing 2" };
+	sf::RenderWindow window{ videoMode,"Worley and Voronoi" };
 	window.setFramerateLimit(60);
 
 	float wFloat = float(w);
