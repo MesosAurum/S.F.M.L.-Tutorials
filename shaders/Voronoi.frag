@@ -2,6 +2,8 @@
 
 in vec2 pos;
 
+uniform float iTime;
+
 float random(vec2 u){
 	
 	float a = dot(u, vec2(12.9898, 78.233));
@@ -28,6 +30,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	vec2 fUv = fract(uv);
 
 	//Will be the smallest distance to our uv.
+	//Changed to 2.0 for more coverage when using different distance functions.
 	float minDist = 2.0;
 	//Will be the closest point to our uv.
 	vec2 minPoint;
@@ -42,6 +45,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 			//Weight will "round" the sides of some (random) cells.
 			float weight = random(point);
+
+			//Moves the points around in their cell.
+			point = 0.5 * (sin(6.2831853 * point + iTime) + 1.0);
 
 			//Tile coordinate + point in neighbor tile - uv position in uv's tile.
 			vec2 diff = neighbor + point - fUv;
@@ -79,7 +85,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	//For shading the distance from an edge of a cell to the center point of that cell.
 	//color = vec3(minDist);
 	//For the color of voronoi noise.
-	color.rb = minPoint;
+	color.gb = minPoint;
 
 	//The color we get out.
 	fragColor = vec4(color, 1.0);
